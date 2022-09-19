@@ -1,23 +1,49 @@
-import logo from './logo.svg';
+import './index.js';
 import './App.css';
+import { useState } from 'react';
+import Axios from 'axios';
+
 
 function App() {
+
+  const [email, setEmail] = useState("");
+  const [pass, setPassword] = useState("");
+  const [id, setId] = useState("");
+  
+  const addUser = () => {
+    Axios.post('http://localhost:3001/create', {
+      email: email,
+      pass: pass
+    }).then(() => {
+      console.log('success');
+    });
+  };
+  //del user by id
+  const delUser = () => {
+    Axios.delete('http://localhost:3001/delete/:id', {
+      id: id
+    }).then(() => {
+      console.log('success');
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="information">
+        <h1>Register</h1>
+        <label>Email</label>
+        <input type="text" onChange={(event) => {
+          setEmail(event.target.value);
+        }} />
+        <label>Password</label>
+        <input type="text" onChange={(event) => {
+          setPassword(event.target.value);
+        }} />
+        <button onClick={addUser}>Register</button>
+      </div>
+      <label>DELETE</label>
+      <input type="text" onChange={(event) => { setId(event.target.value) }} placeholder='Delete'></input>
+      <button onClick={delUser}>Delete</button>
     </div>
   );
 }
