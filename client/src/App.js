@@ -20,12 +20,11 @@ function App() {
   };
   //del user by id
   const delUser = () => {
-    Axios.delete('http://localhost:3001/delete/:id', {
-      id: id
-    }).then(() => {
-      console.log('success');
+    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+      console.log(response);
     });
   };
+  
 
   return (
     <div className="App">
