@@ -1,16 +1,9 @@
-import React, { Component } from "react";
-import { Row, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+
 import './login.css';
 import { useState } from 'react';
 import Axios from 'axios';
 
-class Login extends Component {
-
-    constructor(props) {
-
-    }
-}
-function LoginForm(){
+function Login() {
 
     const [email, setEmail] = useState("");
     const [pass, setPassword] = useState("");
@@ -31,23 +24,24 @@ function LoginForm(){
         });
     };
     return (
-
-        <div className="LoginForm"s>
-            <Row>
-                <form onSubmit={this.login}>
-                    <FormGroup controlId="email">
-                        <ControlLabel>Email</ControlLabel>
-                        <FormControl type="text" name="email" placeholder="Enter your email" onChange={(event) => setEmail(event.target.value)} />
-
-                    </FormGroup>
-                    <FormGroup controlId="password">
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl type="password" name="password" placeholder="Enter your password" onChange={(event) => setPassword(event.target.value)} />
-
-                    </FormGroup>
-                    <Button type="submit" bsStyle="primary" onClick={addUser}>Sign-In</Button>
-                </form>
-            </Row>
+        <div className="Login">
+            <div className="information">
+                <h1>Register</h1>
+                <label>Email</label>
+                <input type="email" onChange={(event) => {
+                    setEmail(event.target.value);
+                }} />
+                <br/>
+                <label>Password</label>
+                <input type="password" onChange={(event) => {
+                    setPassword(event.target.value);
+                }} />
+                <br/>
+                <button onClick={addUser}>Register</button>
+            </div>
+            <label>DELETE</label>
+            <input type="text" onChange={(event) => { setId(event.target.value) }} placeholder='Delete'></input>
+            <button onClick={delUser}>Delete</button>
         </div>
     )
 }
